@@ -52,9 +52,5 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ### Acknowledgments
 
-PaperCanvas was built with the help of several open-source libraries and frameworks. We would like to acknowledge the contributions of these communities.
-
----
-
-Enjoy sketching and collaborating with PaperCanvas!
+Project-Board was built with the help of several open-source libraries and frameworks. We would like to acknowledge the contributions of these communities.
 
