@@ -1,31 +1,32 @@
 import { useState } from "react";
 export function useBoardState (){
-const [boards, setBoards] = useState([
-    {
-      id: Date.now() + Math.random() * 2,
-      title: "To Do",
-      cards: [
-        {
-          id: Date.now() + Math.random(),
-          title: "Card 1",
-        },
-        {
-          id: Date.now() + Math.random(),
-          title: "Card 2",
-        },
-      ],
-    },
-    {
-      id: Date.now() + Math.random() * 2,
-      title: "Compelted",
-      cards: [
-        {
-          id: Date.now() + Math.random(),
-          title: "Card 3",
-        },
-      ],
-    },
-  ]);
+// const [boards, setBoards] = useState([
+//     {
+//       id: Date.now() + Math.random() * 2,
+//       title: "To Do",
+//       cards: [
+//         {
+//           id: Date.now() + Math.random(),
+//           title: "Card 1",
+//         },
+//         {
+//           id: Date.now() + Math.random(),
+//           title: "Card 2",
+//         },
+//       ],
+//     },
+//     {
+//       id: Date.now() + Math.random() * 2,
+//       title: "Compelted",
+//       cards: [
+//         {
+//           id: Date.now() + Math.random(),
+//           title: "Card 3",
+//         },
+//       ],
+//     },
+//   ]);
+const [boards, setBoards] = useState(JSON.parse(localStorage.getItem("boards")) || []);
   const [target, setTarget] = useState({
     cardId: "",
     boardId: "",
@@ -93,6 +94,7 @@ const [boards, setBoards] = useState([
 
     setBoards(tempBoards);
   }
+
   return {
     boards,
     addCard,
