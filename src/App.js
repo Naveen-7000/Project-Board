@@ -1,7 +1,7 @@
 import Layout from "./components/Layout";
 import Board from "./components/Board";
 import Editable from "./components/Editable";
-import { useBoardState } from "./lib/stateManager";
+import { useBoardState } from "./hooks/useBoardState";
 import "./App.css";
 
 function App() {
