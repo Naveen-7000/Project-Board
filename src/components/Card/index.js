@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 const Card = ({ card, handleDragEnter, handleDragEnd, boardId,status }) => {
   const navigate = useNavigate();
   const cardDetail = {card,status,boardId}
+  console.log(card,status,boardId);
   const handleClick = () => {
     if (card) {
       navigate(`/card/${card.id}`,{

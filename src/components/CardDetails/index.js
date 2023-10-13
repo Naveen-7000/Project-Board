@@ -17,11 +17,13 @@ const CardDetails = () => {
 
   useEffect(() => {
     if (updateCard) updateCard(cardData?.boardId, values.id, values);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [values]);
 
-    console.log(values,"details");
+    console.log(cardData,"details");
   useEffect(() => {
     if (updateBoard) updateBoard(status, values.id,cardData?.boardId,values);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status]);
 
   const updateTitle = (value) => {
@@ -36,8 +38,7 @@ const CardDetails = () => {
     setStatus(value);
   }
 
-  const removeCardHandler = (e,boardId, cardId) => {
-    e.preventDefault();
+  const removeCardHandler = (boardId, cardId) => {
     removeCard(boardId,cardId);
     alert('Card removed successfully');
   }
@@ -76,7 +77,7 @@ const CardDetails = () => {
         </div>
       </form>
       <div>
-        <button onClick={(e)=>removeCardHandler(e,cardData?.boardId,values?.id)} >Delete Card</button>
+        <button onClick={()=>removeCardHandler(cardData?.boardId,values?.id)} >Delete Card</button>
       </div>
     </div>
    </div>

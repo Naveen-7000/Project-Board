@@ -1,6 +1,16 @@
 import { useState,useEffect } from "react";
 export function useBoardState (){
-const [boards, setBoards] = useState(JSON.parse(localStorage.getItem("boards")) || []);
+const [boards, setBoards] = useState(JSON.parse(localStorage.getItem("boards")) || [{
+  id: Date.now() + Math.random() * 2,
+  title : "In progress",
+  cards : [
+    {
+      id :Date.now() + Math.random(),
+      title : "card 1",
+      description : "Card 1 information",
+    }
+  ]
+}]);
   const [target, setTarget] = useState({
     cardId: "",
     boardId: "",
@@ -10,6 +20,7 @@ const [boards, setBoards] = useState(JSON.parse(localStorage.getItem("boards")) 
     const card = {
       id: Date.now() + Math.random(),
       title,
+      description:"Empty infromation"
     };
 
     const index = boards.findIndex((item) => item?.id === boardId);
@@ -97,8 +108,6 @@ const [boards, setBoards] = useState(JSON.parse(localStorage.getItem("boards")) 
   function updateBoard(targetBoardId, cardId,currentBoardId,card) {
     const boardIndex = boards.findIndex((item) => item?.title === targetBoardId);
     if (boardIndex < 0) {
-      // remove card from previous board || status
-
       const tempBoards = [...boards];
       tempBoards.push({
         id: Date.now() + Math.random() * 2,
@@ -107,19 +116,18 @@ const [boards, setBoards] = useState(JSON.parse(localStorage.getItem("boards")) 
       });
 
       setBoards(tempBoards);
-      removeCard(currentBoardId, cardId);
     }else{
-
       const tempBoards = [...boards];
       tempBoards[boardIndex].cards.push(card);
       setBoards(tempBoards);
-      removeCard(currentBoardId, cardId);
     }
+      removeCard(currentBoardId, cardId);
+
   }
 
   useEffect(()=>{
     localStorage.setItem("boards",JSON.stringify(boards));
-   },[boards]) 
+   },[boards])
 
   return {
     boards,

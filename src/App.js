@@ -8,10 +8,6 @@ import "./App.css";
 function App() {
  const {boards,removeBoard,addCard,addBoard,handleDragEnd,handleDragEnter} = useBoardState();
  
- useEffect(()=>{
-   localStorage.setItem("boards",JSON.stringify(boards));
-  },[boards]) 
-  console.log(boards);
  return (
     <Layout>
       <div className="board-outer">
