@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import Layout from "./components/Layout";
 import Board from "./components/Board";
 import Editable from "./components/Editable";
