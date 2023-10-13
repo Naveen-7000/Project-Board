@@ -1,0 +1,72 @@
+.board {
+    min-width: 250px;
+    width: 290px;
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.board h4{
+    font-weight: 500;
+}
+
+.boardHeading{
+  display: flex;
+}
+.titleConatiner{
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+.title {
+font-size: 14px;
+font-weight: 500;
+background-color: pink;
+padding: 0px 10px;
+border-radius: 4px;
+}
+
+
+.cardCount {
+ color: gray;
+ margin-left: 10px;
+ font-size: 14px;
+ font-weight: 600;
+}
+.deletBoard{
+  border: 1px solid #ccc;
+  padding: 2px 5px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.iconHorizontal, .iconPlus{
+ cursor: pointer;
+}
+.iconHorizontal:hover{
+ background-color: #e3e3e3;
+ border-radius: 4px;
+
+}
+.iconPlus {
+    margin-left: 6px;
+}
+.iconPlus:hover{
+    background-color: #e3e3e3;
+    border-radius: 4px;
+}
+
+.cardsContainer{
+display: flex;
+flex-direction: column;
+gap: 15px;
+padding: 10px 0;
+overflow-y: auto;
+transition: 0.8 ease;
+width: 100%;
+}
+
+.cardsContainer::-webkit-scrollbar {
+    display: none;
+  }
