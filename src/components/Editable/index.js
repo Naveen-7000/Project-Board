@@ -2,16 +2,16 @@ import React, { useState } from "react";
 
 import { Plus, X } from "react-feather";
 
-import  "./index.css";
+import "./index.css";
 
-function Editable(props) {
+function Editable({ onSubmit, editClass, placeholder, text, displayClass }) {
   const [isEditable, setIsEditable] = useState(false);
-  const [inputText, setInputText] = useState(props.defaultValue || "");
+  const [inputText, setInputText] = useState("");
   const submission = (e) => {
     e.preventDefault();
-    if (inputText && props.onSubmit) {
+    if (inputText && onSubmit) {
       setInputText("");
-      props.onSubmit(inputText);
+      onSubmit(inputText);
     }
     setIsEditable(false);
   };
@@ -20,29 +20,29 @@ function Editable(props) {
     <div className="editable">
       {isEditable ? (
         <form
-          className={`editable_edit ${props.editClass ? props.editClass : ""}`}
+          className={`editable_edit ${editClass ? editClass : ""}`}
           onSubmit={submission}
         >
           <input
             type="text"
             value={inputText}
-            placeholder={props.placeholder || props.text}
+            placeholder={placeholder || text}
             onChange={(event) => setInputText(event.target.value)}
             autoFocus
           />
           <div className="editable_edit_footer">
-            <button type="submit"><Plus size={"16px"} /> Add</button>
+            <button type="submit">
+              <Plus size={"16px"} /> Add
+            </button>
             <X onClick={() => setIsEditable(false)} className="closeIcon" />
           </div>
         </form>
       ) : (
         <p
-          className={`editable_display ${
-            props.displayClass ? props.displayClass : ""
-          }`}
+          className={`editable_display ${displayClass ? displayClass : ""}`}
           onClick={() => setIsEditable(true)}
         >
-          <Plus className="plus" size={"16px"} /> {props.text}
+          <Plus className="plus" size={"16px"} /> {text}
         </p>
       )}
     </div>

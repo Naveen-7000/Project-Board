@@ -1,17 +1,16 @@
-import React from 'react'
-import styles from "./index.module.css"
-const Card = ({props, handleDragEnter, handleDragEnd, boardId}) => {
+import React from "react";
+import styles from "./index.module.css";
+const Card = ({ card, handleDragEnter, handleDragEnd, boardId }) => {
   return (
-    <div 
-    className={styles.cardContainer} 
-    draggable
-    onDragEnd={()=>handleDragEnd(props?.id, boardId)}
-    onDragEnter={()=>handleDragEnter(props?.id, boardId)}
+    <div
+      className={styles.cardContainer}
+      draggable
+      onDragEnd={() => handleDragEnd(card?.id, boardId)}
+      onDragEnter={() => handleDragEnter(card?.id, boardId)}
     >
-      <div className={styles.cardTitle}>
-      {props?.title}</div>
-      </div>
-  )
-}
+      <div className={styles.cardTitle}>{card?.title}</div>
+    </div>
+  );
+};
 
-export default Card
+export default Card;
