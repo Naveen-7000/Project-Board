@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from 'react'
 import Layout from "../Layout";
-import { useLocation } from 'react-router-dom';
-import { Type,List, Tag } from 'react-feather';
+import { useLocation,useNavigate } from 'react-router-dom';
+import { Type,List, Tag, ArrowLeft } from 'react-feather';
 import Editable from '../Editable';
 import { useBoardState } from '../../hooks/useBoardState';
 import "./index.css"
@@ -12,8 +12,8 @@ const CardDetails = () => {
   const [values, setValues] = useState({
     ...cardData?.card,
   });
-  
-  const [status, setStatus] = useState(cardData?.status)
+  const [status, setStatus] = useState(cardData?.status);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (updateCard) updateCard(cardData?.boardId, values.id, values);
@@ -45,7 +45,10 @@ const CardDetails = () => {
   return (
   <Layout>
    <div className='card-info-container'>
+    <div className='navigation'>
+    <ArrowLeft size={"16px"} className='icon' onClick={()=>navigate("/")}/>
     <h4>Card Details</h4>
+    </div>
     <div className='card-info'>
       <form>
         <div className='fields'>
@@ -75,10 +78,10 @@ const CardDetails = () => {
             onSubmit={updateStatus}
           />
         </div>
-      </form>
       <div>
         <button onClick={()=>removeCardHandler(cardData?.boardId,values?.id)} >Delete Card</button>
       </div>
+      </form>
     </div>
    </div>
     </Layout>

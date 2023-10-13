@@ -5,6 +5,20 @@
 .card-info-container p{
     display: flex;
     align-items: center;
+    
+}
+
+.card-info{
+padding: 5px 25px;
+}
+
+.navigation {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  margin-bottom: 10px;
+  gap: 5px;
 }
 
 .fields{
@@ -14,8 +28,9 @@
     margin-bottom: 15px;
 }
 
-.fields .icon {
+.icon {
     margin-right: 5px;
+    cursor: pointer;
 }
   
   button {
