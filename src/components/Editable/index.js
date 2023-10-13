@@ -1,14 +1,13 @@
 import React, { useState } from "react";
-
 import { Plus, X } from "react-feather";
-
 import "./index.css";
 
-function Editable({ onSubmit, editClass, placeholder, text, displayClass }) {
+function Editable({ onSubmit, editClass, placeholder, text, displayClass, defaultValue }) {
   const [isEditable, setIsEditable] = useState(false);
-  const [inputText, setInputText] = useState("");
+  const [inputText, setInputText] = useState(defaultValue || "");
+  
   const submission = (e) => {
-    e.preventDefault();
+    e.preventDefault(); // Prevent form submission
     if (inputText && onSubmit) {
       setInputText("");
       onSubmit(inputText);
@@ -19,10 +18,7 @@ function Editable({ onSubmit, editClass, placeholder, text, displayClass }) {
   return (
     <div className="editable">
       {isEditable ? (
-        <form
-          className={`editable_edit ${editClass ? editClass : ""}`}
-          onSubmit={submission}
-        >
+        <div className={`editable_edit ${editClass ? editClass : ""}`}>
           <input
             type="text"
             value={inputText}
@@ -31,12 +27,12 @@ function Editable({ onSubmit, editClass, placeholder, text, displayClass }) {
             autoFocus
           />
           <div className="editable_edit_footer">
-            <button type="submit">
+            <button type="button" onClick={(e)=>submission(e)}> {/* Use button type="button" */}
               <Plus size={"16px"} /> Add
             </button>
             <X onClick={() => setIsEditable(false)} className="closeIcon" />
           </div>
-        </form>
+        </div>
       ) : (
         <p
           className={`editable_display ${displayClass ? displayClass : ""}`}

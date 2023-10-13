@@ -18,6 +18,11 @@ const Board = ({
   useEffect(() => {
     if (titleRef && titleRef.current) setRandomBackgroundColor(titleRef);
   }, []);
+
+  function addCardHandler (inputText){
+    addCard(inputText);
+    setShowAddCard(false);
+  }
   return (
     <div className={styles.board}>
       <div className={styles.boardHeading}>
@@ -58,7 +63,7 @@ const Board = ({
           placeholder="Enter Card Title"
           displayClass="board_add-card"
           editClass="board_add-card_edit"
-          onSubmit={addCard}
+          onSubmit={addCardHandler}
         />
       )}
       <div className={styles.cardsContainer}>
@@ -66,6 +71,7 @@ const Board = ({
           <Card
             key={card?.id}
             card={card}
+            status={board?.title}
             boardId={board?.id}
             handleDragEnd={handleDragEnd}
             handleDragEnter={handleDragEnter}

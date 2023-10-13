@@ -1,16 +1,17 @@
+import { useEffect } from "react";
 import Layout from "./components/Layout";
 import Board from "./components/Board";
 import Editable from "./components/Editable";
 import { useBoardState } from "./hooks/useBoardState";
 import "./App.css";
-import { useEffect } from "react";
 
 function App() {
  const {boards,removeBoard,addCard,addBoard,handleDragEnd,handleDragEnter} = useBoardState();
- useEffect(()=>{
-  localStorage.setItem("boards",JSON.stringify(boards));
- },[boards]) 
  
+ useEffect(()=>{
+   localStorage.setItem("boards",JSON.stringify(boards));
+  },[boards]) 
+  console.log(boards);
  return (
     <Layout>
       <div className="board-outer">
