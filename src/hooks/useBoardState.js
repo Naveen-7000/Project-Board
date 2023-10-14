@@ -1,16 +1,6 @@
 import { useState,useEffect } from "react";
 export function useBoardState (){
-const [boards, setBoards] = useState(JSON.parse(localStorage.getItem("boards")) || [{
-  id: Date.now() + Math.random() * 2,
-  title : "In progress",
-  cards : [
-    {
-      id :Date.now() + Math.random(),
-      title : "card 1",
-      description : "Card 1 information",
-    }
-  ]
-}]);
+const [boards, setBoards] = useState(JSON.parse(localStorage.getItem("boards")) || []);
   const [target, setTarget] = useState({
     cardId: "",
     boardId: "",

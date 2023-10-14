@@ -8,9 +8,10 @@
     
 }
 
-.card-info{
+.card-info,.removeCard{
 padding: 5px 25px;
 }
+
 
 .navigation {
   display: flex;
