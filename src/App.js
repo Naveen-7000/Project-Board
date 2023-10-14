@@ -6,7 +6,6 @@ import "./App.css";
 
 function App() {
  const {boards,removeBoard,addCard,addBoard,handleDragEnd,handleDragEnter} = useBoardState();
- 
  return (
     <Layout>
       <div className="board-outer">

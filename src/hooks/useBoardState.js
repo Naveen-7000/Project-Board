@@ -5,6 +5,10 @@ const [boards, setBoards] = useState(JSON.parse(localStorage.getItem("boards")) 
     cardId: "",
     boardId: "",
   });
+
+  useEffect(()=>{
+    localStorage.setItem("boards",JSON.stringify(boards));
+   },[boards])
 //  below are the fucntions for adding new cards, board and removing board     also handler to handle drag and drop events of cards
   function addCard(title, boardId) {
     const card = {
@@ -35,6 +39,7 @@ const [boards, setBoards] = useState(JSON.parse(localStorage.getItem("boards")) 
   }
 
   const updateCard = (boardId, cardId, card) => {
+
     const index = boards.findIndex((item) => item.id === boardId);
     if (index < 0) return;
     const tempBoards = [...boards];
@@ -104,20 +109,18 @@ const [boards, setBoards] = useState(JSON.parse(localStorage.getItem("boards")) 
         title: targetBoardId,
         cards: [card],
       });
-
+      removeCard(currentBoardId, cardId);
       setBoards(tempBoards);
+
     }else{
       const tempBoards = [...boards];
       tempBoards[boardIndex].cards.push(card);
       setBoards(tempBoards);
-    }
       removeCard(currentBoardId, cardId);
+    }
 
   }
 
-  useEffect(()=>{
-    localStorage.setItem("boards",JSON.stringify(boards));
-   },[boards])
 
   return {
     boards,

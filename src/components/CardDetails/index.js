@@ -11,19 +11,16 @@ const CardDetails = () => {
   const { updateCard, updateBoard, removeCard } = useBoardState();
   const [values, setValues] = useState({
     ...cardData?.card,
+    status: cardData.status,
   });
-  const [status, setStatus] = useState(cardData?.status);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (updateCard) updateCard(cardData?.boardId, values.id, values);
+    if (updateCard) updateCard(cardData?.boardId, values?.id, values);
+    if (updateBoard)
+      updateBoard(values?.status, values?.id, cardData?.boardId, values);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [values]);
-
-  useEffect(() => {
-    if (updateBoard) updateBoard(status, values.id, cardData?.boardId, values);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [status]);
 
   const updateTitle = (value) => {
     setValues({ ...values, title: value });
@@ -34,7 +31,7 @@ const CardDetails = () => {
   };
 
   const updateStatus = (value) => {
-    setStatus(value);
+    setValues({ ...values, status: value });
   };
 
   const removeCardHandler = (e, boardId, cardId) => {
@@ -85,8 +82,8 @@ const CardDetails = () => {
                 Status
               </p>
               <Editable
-                defaultValue={status}
-                text={status}
+                defaultValue={values?.status}
+                text={values?.status}
                 placeholder="Enter Status"
                 onSubmit={updateStatus}
               />
